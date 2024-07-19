@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
+const cors = require('cors');
 const { AzureKeyCredential } = require('@azure/core-auth');
 const createClient = require('@azure-rest/ai-vision-image-analysis').default;
 
@@ -12,6 +13,14 @@ const key = process.env.VISION_KEY;
 
 const credential = new AzureKeyCredential(key);
 const client = createClient(endpoint, credential);
+
+// Enable CORS for all routes
+const corsOptions = {
+  origin: 'http://localhost:3000', // Specify the origin you want to allow requests from
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+router.use(cors(corsOptions));
 
 //const imageUrl = 'https://learn.microsoft.com/azure/ai-services/computer-vision/media/quickstarts/presentation.png';
 
