@@ -35,7 +35,7 @@ const features = [
   router.post('/analyzeImage', async (req, res) => {
     // Assuming the image URL will be sent in the request body
     const imageUrl = req.body.url;
-    const genderNeutral = req.body.genderNeutral;
+    let genderNeutral = req.body.genderNeutral;
     if(!genderNeutral) {
       genderNeutral = true;
     };
