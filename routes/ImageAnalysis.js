@@ -16,7 +16,7 @@ const client = createClient(endpoint, credential);
 
 // Enable CORS for all routes
 const corsOptions = {
-  origin: 'http://localhost:3000', // Specify the origin you want to allow requests from
+  origin: '*', // Specify the origin you want to allow requests from
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
