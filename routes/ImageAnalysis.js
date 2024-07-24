@@ -22,11 +22,6 @@ const corsOptions = {
 
 router.use(cors(corsOptions));
 
-//const imageUrl = 'https://learn.microsoft.com/azure/ai-services/computer-vision/media/quickstarts/presentation.png';
-
-//const imagePath = '../sample.jpg';
-//const imageData = fs.readFileSync(imagePath);
-
 const features = [
     'Caption',
     'DenseCaptions',
@@ -40,6 +35,10 @@ const features = [
   router.post('/analyzeImage', async (req, res) => {
     // Assuming the image URL will be sent in the request body
     const imageUrl = req.body.url;
+    const genderNeutral = req.body.genderNeutral;
+    if(!genderNeutral) {
+      genderNeutral = true;
+    };
   
     const result = await client.path('/imageanalysis:analyze').post({
       body: {
@@ -48,7 +47,7 @@ const features = [
       queryParameters: {
           features: features,
           'language': 'en',
-          'gender-neutral-captions': 'true',
+          'gender-neutral-captions': genderNeutral,
           'smartCrops-aspect-ratios': [0.9, 1.33]
       },
       contentType: 'application/json'
