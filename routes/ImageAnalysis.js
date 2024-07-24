@@ -47,7 +47,7 @@ const features = [
       queryParameters: {
           features: features,
           'language': 'en',
-          'gender-neutral-captions': genderNeutral,
+          'gender-neutral-caption': genderNeutral,
           'smartCrops-aspect-ratios': [0.9, 1.33]
       },
       contentType: 'application/json'
