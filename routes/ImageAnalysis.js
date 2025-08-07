@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit'); // Add rate limit import
 const { AzureKeyCredential } = require('@azure/core-auth');
 const createClient = require('@azure-rest/ai-vision-image-analysis').default;
 
@@ -22,6 +23,13 @@ const corsOptions = {
 
 router.use(cors(corsOptions));
 
+// Rate limiter: 10 requests per minute per IP
+const analyzeImageLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 10, // limit each IP to 10 requests per windowMs
+  message: { error: 'Too many requests, please try again later.' }
+});
+
 const features = [
     'Caption',
     'DenseCaptions',
@@ -32,7 +40,8 @@ const features = [
     'Tags'
   ];
 
-  router.post('/analyzeImage', async (req, res) => {
+  // Apply rate limiter to /analyzeImage
+  router.post('/analyzeImage', analyzeImageLimiter, async (req, res) => {
     // Assuming the image URL will be sent in the request body
     const imageUrl = req.body.url;
     const genderNeutral = req.body.genderNeutral;
