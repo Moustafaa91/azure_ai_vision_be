@@ -2,7 +2,7 @@
 
 ## Overview
 The backend and APIs for Microsoft Azure VisionAI react app, developed using Node.js and Expressjs
-For more details, you can check the frontend app in this repository [azure_ai_vision_fe](https://github.com/Moustafaa91/azure_ai_vision_fe)
+For more details, you can check the frontend app in this repository [azure_ai_vision_frontend](https://github.com/Moustafaa91/azure_ai_vision_frontend)
 
 ## Installation
 
