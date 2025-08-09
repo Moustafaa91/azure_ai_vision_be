@@ -79,29 +79,7 @@ Analyzes an image using Azure Vision AI API.
 }
 ```
 
-## Security Features
-
-This backend includes comprehensive security measures:
-
-- **Origin Validation**: Only requests from specified domains are allowed
-- **Rate Limiting**: Prevents API overuse (5 requests/minute, 100/day per IP)
-- **Request Validation**: Validates image URLs and request format
-- **Security Headers**: Protects against common web attacks
-- **Comprehensive Logging**: Monitors all API activity
-
 ## Development
-
-### Project Structure
-```
-├── config/
-│   └── security.js          # Security configuration
-├── middleware/
-│   └── security.js          # Security middleware
-├── routes/
-│   └── ImageAnalysis.js     # API routes
-├── app.js                   # Main application
-└── .env                     # Environment variables (not in repo)
-```
 
 ### Local Development
 
